@@ -1,0 +1,141 @@
+Here's a simple single-page HTML5 "Werewolf" centered game concept with the werewolf in the middle and 8 inventory slots arranged in a circle (360°) around it:
+HTML<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Werewolf • Inventory Circle</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    background: #0d0015;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #eee;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .game-container {
+    position: relative;
+    width: 520px;
+    height: 520px;
+  }
+
+  .werewolf {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 140px;
+    z-index: 10;
+    text-shadow: 0 0 20px #c00, 0 0 40px #800;
+    pointer-events: none;
+  }
+
+  .inventory-circle {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .slot {
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    background: rgba(40, 20, 60, 0.7);
+    border: 2px solid #5a3d8a;
+    border-radius: 16px;
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 48px;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+  }
+
+  .slot:hover {
+    transform: scale(1.15) rotate(5deg);
+    background: rgba(70, 40, 100, 0.9);
+    border-color: #b080ff;
+    cursor: pointer;
+    box-shadow: 0 0 30px rgba(180, 120, 255, 0.6);
+  }
+
+  /* 8 positions - 45° apart */
+  .slot-1 { transform: rotate(  0deg) translate(220px) rotate(-  0deg); }
+  .slot-2 { transform: rotate( 45deg) translate(220px) rotate(- 45deg); }
+  .slot-3 { transform: rotate( 90deg) translate(220px) rotate(- 90deg); }
+  .slot-4 { transform: rotate(135deg) translate(220px) rotate(-135deg); }
+  .slot-5 { transform: rotate(180deg) translate(220px) rotate(-180deg); }
+  .slot-6 { transform: rotate(225deg) translate(220px) rotate(-225deg); }
+  .slot-7 { transform: rotate(270deg) translate(220px) rotate(-270deg); }
+  .slot-8 { transform: rotate(315deg) translate(220px) rotate(-315deg); }
+
+  h1 {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2.4rem;
+    margin: 0;
+    text-shadow: 0 0 15px #c00;
+    z-index: 5;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+
+<div class="game-container">
+
+  <h1>Werewolf Night</h1>
+
+  <div class="inventory-circle">
+    <div class="slot slot-1">🗡️</div>
+    <div class="slot slot-2">🌿</div>
+    <div class="slot slot-3">🩸</div>
+    <div class="slot slot-4">🔮</div>
+    <div class="slot slot-5">🪓</div>
+    <div class="slot slot-6">🧄</div>
+    <div class="slot slot-7">💀</div>
+    <div class="slot slot-8">🌙</div>
+  </div>
+
+  <div class="werewolf">🐺</div>
+
+</div>
+
+<script>
+// Optional: very simple click interaction example
+document.querySelectorAll('.slot').forEach(slot => {
+  slot.addEventListener('click', () => {
+    slot.style.transform = 'scale(1.4) rotate(15deg)';
+    slot.style.background = 'rgba(180,60,60,0.8)';
+    slot.style.borderColor = '#ff4444';
+    
+    setTimeout(() => {
+      slot.style.transform = '';
+      slot.style.background = '';
+      slot.style.borderColor = '';
+    }, 400);
+  });
+});
+</script>
+
+</body>
+</html>
+What you can do next (easy modifications):
+
+Change emojis in .slot-1 ~ .slot-8
+Replace 🐺 with better werewolf emoji / SVG / image
+Add onclick actions to each slot (use different classes or data attributes)
+Make items draggable → drop on werewolf
+Add day/night toggle that changes background & werewolf emoji
+Add simple health/mana bars around the center
+
+Enjoy your little werewolf ritual circle! 🐺🌙
